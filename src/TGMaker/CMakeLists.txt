@@ -1,0 +1,20 @@
+set(HEADERS
+	Option.h
+	tg-io.h
+)
+set(SOURCES
+	main.cpp
+	Option.cpp
+	tg-io.cpp
+)
+add_executable(TGMaker
+	${HEADERS} ${SOURCES})
+target_link_libraries(TGMaker
+	common
+	teg
+	io
+	util
+	${Boost_FILESYSTEM_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
+	${Boost_PROGRAM_OPTIONS_LIBRARY}
+)
