@@ -1,0 +1,16 @@
+gSpan-master-betterenvi.zip
+https://github.com/betterenvi/gSpan.git
+Python 2 and 3
+
+
+gSpan-master-LasseRegin.zip
+https://github.com/LasseRegin/gSpan.git
+Python 2 and 3
+numPy
+
+
+DataMining-gSpan-master.zip
+https://github.com/Jokeren/DataMining-gSpan.git
+C++11
+glog, gflags, cmake, openmp
+
