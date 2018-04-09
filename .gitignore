@@ -8,12 +8,27 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 
+# Linux temporary files
+*.gch
+*.o
+*.so
+*.a
+*.out
+
+# Windows temporary files
+*.lib
+*.pdb
+*.exe
+
 # my build folders
-/build
-/vsproject
+build/
+vsproject/
+bin/
 
 # data folders
 /data*
 /test*
-/reference
+reference/
 
+# logs
+*.log
