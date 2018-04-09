@@ -1,5 +1,6 @@
 #pragma once
 #include <utility>
+#include <functional>
 
 struct Edge {
 	int s, d;
