@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include <vector>
-#include <functional>
 
 class Option
 {
@@ -28,6 +27,5 @@ public:
 	bool parseInput(int argc, char *argv[]);
 private:
 	std::string& sortUpPath(std::string& path);
-	bool checkIOLogic() const;
 };
 
