@@ -72,6 +72,9 @@
         "memory": "cpp",
         "mutex": "cpp",
         "thread": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "slist": "cpp",
+        "clocale": "cpp",
+        "*.tcc": "cpp"
     }
 }

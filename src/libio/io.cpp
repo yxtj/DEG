@@ -11,7 +11,29 @@ Graph loadGraph(istream& is) {
 	return res;
 }
 
+void prepareFolder(const std::string& folder){
+	using namespace boost::filesystem;
+	path root(folder);
+	if(exists(root))
+		return;
+	create_directories(root);
+}
 
+void prepareFile(const std::string& fpath){
+	using namespace boost::filesystem;
+	path fp(fpath);
+	if(exists(fp))
+		return;
+	create_directories(fp.parent_path());
+}
+
+bool canWriteToFile(const std::string& fpath){
+	using namespace boost::filesystem;
+	path fp(fpath);
+	if(exists(fp))
+		return true;
+	return exists(fp.parent_path());
+}
 
 std::vector<std::pair<SubjectInfo, std::vector<std::string>>> getSubjectFilenames(
 	const std::string & folder, const std::vector<int>& types, int nSub, int nSkip, int nGraph)
