@@ -17,10 +17,11 @@ Option::Option()
 	pimpl->desc.add_options()
 		("help,h", "Print help messages")
 		("showInfo", value<bool>(&show)->default_value(true), "Print the initializing information")
+		("format", value<string>(&format_str)->required(), "The destination format. Support: gSpan, apriori")
 		("gPath,i", value<string>(&iPath)->required(), "The folder for original graph (input).")
 		("gsPath,o", value<string>(&oPath)->required(), "The folder/file for gSpan format graphs (output).")
-		("oneFile,k", value<bool>(&oneFile)->default_value(true), "Dump all the output into one file."
-			"If it is set, <o> should be a filename. Otherwise <o> should be a folder.")
+		("separated,p", value<bool>(&separated)->default_value(false), "Dump the output graphs separately. Valid for some "
+			"If it is set, <o> should be a folder. Otherwise <o> should be a file.")
 		("nSubject,n", value<int>(&nSubject)->default_value(0), 
 			"# of subjects to load (non-positive means load all).")
 		("nSkip,s",value<int>(&nSkip)->default_value(0),"Skip the first <s> subjects (used for restart from failure).")
@@ -55,12 +56,17 @@ bool Option::parseInput(int argc, char* argv[]) {
 	while(!flag_help) { // technique for condition checking
 		flag_help = true;
 		if(nSkip<0){
-			cerr<<"Error: nSkip should be 0 or positive"<< "\n";
+			cerr<<"Error: nSkip should be 0 or positive"<<endl;
 			break;
 		}
 
 		sortUpPath(iPath);
 		sortUpOutputPath();
+		setFormat();
+		if(format == Format::NONE){
+			cerr<<"Error: format is not supported."<<endl;
+			break;
+		}
 		flag_help = false;
 		break;
 	}
@@ -79,8 +85,25 @@ std::string& Option::sortUpPath(std::string & path)
 	return path;
 }
 
+void Option::sortUpInputPath(){
+	sortUpPath(iPath);
+}
 void Option::sortUpOutputPath(){
-	if(!oneFile){
+	if(separated){
 		sortUpPath(oPath);
+	}
+}
+
+void Option::setFormat(){
+	for(auto& ch : format_str){
+		if(ch >= 'A' && ch <='Z')
+			ch += 'a'-'A';
+	}
+	if(format_str == "gspan"){
+		format = Format::GSPAN;
+	}else if(format_str == "apriori"){
+		format = Format::APRIORI;
+	}else{
+		format = Format::NONE;
 	}
 }
