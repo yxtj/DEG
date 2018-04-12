@@ -23,7 +23,9 @@ CTestTestfile.cmake
 # my build folders
 build/
 vsproject/
+.vscode/
 bin/
+*.code-workspace
 
 # data folders
 /data*
