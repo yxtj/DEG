@@ -7,9 +7,9 @@ set(SOURCES
 	Option.cpp
 	dump.cpp
 )
-add_executable(GraphFormater
+add_executable(GraphFormatter
 	${HEADERS} ${SOURCES})
-target_link_libraries(GraphFormater
+target_link_libraries(GraphFormatter
 	common
 	io
 	util
