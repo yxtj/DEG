@@ -1,13 +1,28 @@
 #include "Option.h"
 #include "load.h"
-#include "libcommon/Subject.h"
+#include "libcommon/Motif.h"
 #include "libio/fs.h"
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <regex>
 #include <string>
 
 using namespace std;
+
+bool dumpMotifs(const vector<Motif>& ms, const string& fn){
+	ofstream fout(fn);
+	if(!fout)
+		return false;
+	for(auto& m : ms){
+		fout<<m.getnNode()<<"\t"<<m.getnEdge()<<"\t";
+		for(auto& e : m.edges){
+			fout<<"("<<e.s<<","<<e.d<<") ";
+		}
+		fout<<"\n";
+	}
+	return true;
+}
 
 int main(int argc, char* argv[]) {
 	Option opt;
@@ -64,8 +79,8 @@ int main(int argc, char* argv[]) {
 	}
 	cout << "# of loaded motifs: " << ms.size() << endl;
 
-	cout << "Converting to " << opt.format_str << " format..." << endl;
-	// TODO
+	cout << "Dump with our motif format..." << endl;
+	dumpMotifs(ms, opt.oPath);
 
 	return 0;
 }
