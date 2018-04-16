@@ -101,3 +101,17 @@ std::vector<Motif> loadMotif(const std::string& filename, int nMotif){
 	}
 	return res;
 }
+
+bool dumpMotifs(const std::vector<Motif>& ms, const std::string& fn){
+	ofstream fout(fn);
+	if(!fout)
+		return false;
+	for(auto& m : ms){
+		fout<<m.getnNode()<<"\t"<<m.getnEdge()<<"\t";
+		for(auto& e : m.edges){
+			fout<<"("<<e.s<<","<<e.d<<") ";
+		}
+		fout<<"\n";
+	}
+	return true;
+}
