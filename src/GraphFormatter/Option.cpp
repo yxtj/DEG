@@ -15,11 +15,11 @@ Option::Option()
 	// define
 	using boost::program_options::value;
 	pimpl->desc.add_options()
-		("help,h", "Print help messages")
+		("help,h", "Translate my graph files into other formats. Print help messages.")
 		("showInfo", value<bool>(&show)->default_value(true), "Print the initializing information")
-		("format", value<string>(&format_str)->required(), "The destination format. Support: gSpan, apriori")
+		("format,f", value<string>(&format_str)->required(), "The destination format. Support: gSpan, apriori")
 		("gPath,i", value<string>(&iPath)->required(), "The folder for original graph (input).")
-		("gsPath,o", value<string>(&oPath)->required(), "The folder/file for gSpan format graphs (output).")
+		("gsPath,o", value<string>(&oPath)->required(), "The folder/file for translated graphs (output).")
 		("separated,p", value<bool>(&separated)->default_value(false), "Dump the output graphs separately. Valid for some "
 			"If it is set, <o> should be a folder. Otherwise <o> should be a file.")
 		("nSubject,n", value<int>(&nSubject)->default_value(0), 
