@@ -2,6 +2,7 @@
 #include "dump.h"
 #include "libcommon/Subject.h"
 #include "libio/io.h"
+#include "libio/fs.h"
 #include <iostream>
 #include <vector>
 #include <string>
