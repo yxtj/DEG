@@ -71,3 +71,33 @@ std::vector<Subject> loadSubject(const std::string & folder,
 	}
 	return res;
 }
+
+Motif parseMotif(const std::string& line) {
+	size_t plast = line.find('\t') + 1;
+	size_t p = line.find('\t', plast);
+	int nEdge = stoi(line.substr(plast, p - plast));
+	plast = p + 2;
+	Motif m;
+	while(nEdge--) {
+		size_t pmid = line.find(',', plast);
+		int s = stoi(line.substr(plast, pmid - plast));
+		pmid++;
+		p = line.find(')', pmid);
+		int d = stoi(line.substr(pmid, p - pmid));
+		m.addEdge(s, d);
+		plast = p + 3;
+	}
+	return m;
+}
+
+std::vector<Motif> loadMotif(const std::string& filename, int nMotif){
+	std::vector<Motif> res;
+	ifstream fin(filename);
+	string line;
+	while(getline(fin, line)){
+		if(line.empty())
+			continue;
+		res.push_back(parseMotif(line));
+	}
+	return res;
+}
