@@ -32,13 +32,14 @@ link_directories (${Boost_LIBRARY_DIRS})
 
 set(CMAKE_CXX_FLAGS "${CXX_WARN} ${CXX_DEFINE} ${CMAKE_CXX_FLAGS}")
 
-add_subdirectory (libcommon)
-add_subdirectory (libutil)
-add_subdirectory (libteg)
-add_subdirectory (libio)
-add_subdirectory (GraphFormatter)
-add_subdirectory (TGMaker)
-add_subdirectory (Tools)
-add_subdirectory (Test)
+add_subdirectory(libcommon)
+add_subdirectory(libutil)
+add_subdirectory(libteg)
+add_subdirectory(libio)
+add_subdirectory(GraphFormatter)
+add_subdirectory(MotifFormatter)
+add_subdirectory(TGMaker)
+add_subdirectory(Tools)
+add_subdirectory(Test)
 
 
