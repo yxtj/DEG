@@ -53,7 +53,7 @@ std::vector<Motif> load_gSpan_result(std::function<std::string()> ifFun, const b
 	size_t limit = n <= 0 ? numeric_limits<size_t>::max() : n;
 	std::vector<Motif> res;
 	for(string fn = ifFun(); !fn.empty(); fn = ifFun()){
-		std::vector<Motif>&& tmp = load_gSpan_result(fn, check, n - res.size());
+		std::vector<Motif>&& tmp = load_gSpan_result(fn, check, limit - res.size());
 		for(auto& t : tmp)
 			res.push_back(move(t));
 	}
