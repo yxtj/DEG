@@ -41,21 +41,19 @@ int main(int argc, char* argv[]) {
 	cout << "Loading original motifs..." << endl;
 	vector<Motif> ms;
 	try{
-		function<string()> fun;
+		vector<string> fns;
 		if(opt.isFileInput){
-			fun = [=](){
-				return opt.iFile;
-			};
+			fns.push_back(opt.iFile);
 		}else{
 			vector<string> fns = listFilePattern(opt.iFile, opt.iPattern);
-			fun = [=]()->string{
-				static auto it = fns.begin();
-				if(it!=fns.end()){
-					return *it++;
-				}else
-					return string("");
-			};
 		}
+		function<string()> fun = [&]()->string{
+			static auto it = fns.begin();
+			if(it!=fns.end()){
+				return *it++;
+			}else
+				return string("");
+		};
 		if(opt.format == Option::Format::GSPAN)
 			ms = load_gSpan_result(fun, opt.checkValid, opt.nRes);
 		else if (opt.format == Option::Format::APRIORI)
