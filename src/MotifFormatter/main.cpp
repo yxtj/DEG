@@ -62,7 +62,7 @@ int main(int argc, char* argv[]) {
 		cerr<<"Error: "<<e.what()<<endl;
 		return 3;
 	}
-	cout << "# of loaded motifs: " << ms.size() << endl;
+	cout << "# of loaded valid motifs: " << ms.size() << endl;
 
 	cout << "Dump with our motif format..." << endl;
 	dumpMotifs(ms, opt.oPath);
