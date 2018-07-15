@@ -22,12 +22,14 @@ std::vector<Motif> load_gSpan_result(const std::string& ifn, const bool check, c
 	while(res.size()<n && getline(fin, line)){
 		if(line.empty() || line[0] != 't')
 			throw runtime_error("Error: the input file format is not correct");
-		getline(fin, line);
-		if(line.empty() || line[0] != 'p')
-			throw runtime_error("Error: the input file format is not correct");
 		Motif m;
 		vector<int> nodes;
 		getline(fin, line);
+		if(line.empty()){
+			throw runtime_error("Error: the input file format is not correct");
+		}else if(line[0] == 'p'){ // parent
+			getline(fin, line);
+		}
 		while(!line.empty() && line[0] == 'v'){
 			nodes.push_back(stoi(line.substr(line.rfind(' '))));
 			getline(fin, line);
